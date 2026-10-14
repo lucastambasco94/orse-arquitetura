@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORSE Arquitetura | Arquiteto Octávio Rezende, Rio de Janeiro</title>
+<meta name="description" content="ORSE Arquitetura, do arquiteto Octávio Rezende. Projetos residenciais, interiores, reformas e comerciais no Rio de Janeiro e em todo o Brasil.">
+<meta name="theme-color" content="#171715">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="ORSE Arquitetura">
+<meta property="og:description" content="Arquitetura que respeita quem vive o espaço. Residencial, interiores, reformas e comercial no Rio de Janeiro.">
+<meta property="og:image" content="og-image.jpg"><!-- [A FORNECER] imagem 1200x630 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"ORSE Arquitetura","areaServed":"Rio de Janeiro, Brasil",
+ "founder":{"@type":"Person","name":"Octávio Rezende","jobTitle":"Arquiteto"},"sameAs":["https://www.instagram.com/orse.arquitetura/"]}
+</script>
+<style>
+:root{--off:#F6F4F0;--graphite:#252522;--black:#171715;--mineral:#898780;--line:rgba(37,37,34,.16);
+  --serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",system-ui,sans-serif;
+  --pad:clamp(20px,5vw,72px);--ease:cubic-bezier(.2,.7,.2,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--graphite);font:300 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mineral)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.05}
+h2{font-size:clamp(36px,5vw,64px)}
+em{font-style:italic}
+.sec{padding:clamp(80px,11vw,150px) 0}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;font-size:13px;letter-spacing:.08em;border:1px solid currentColor;transition:background .4s,color .4s}
+.btn--light{background:var(--off);color:var(--black);border-color:var(--off)}
+.btn--light:hover{background:transparent;color:var(--off)}
+.link{display:inline-flex;gap:10px;align-items:center;font-size:13px;letter-spacing:.06em;border-bottom:1px solid currentColor;padding-bottom:3px;transition:gap .4s var(--ease)}
+.link:hover{gap:16px}
+
+/* Imagens / placeholders */
+.ph{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 18% 10%,#E9E3D8,#D4CCBE 45%,#B9B1A3)}
+.ph::before{content:"";position:absolute;inset:0;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%23252522' stroke-opacity='.22' stroke-width='.6'%3E%3Crect x='150' y='105' width='100' height='80'/%3E%3Cpath d='M0 0L150 105M400 0L250 105M0 300L150 185M400 300L250 185M175 185v-45h50v45'/%3E%3C/g%3E%3C/svg%3E") center/cover}
+.ph--dark{background:radial-gradient(110% 80% at 22% 8%,#4A4740,#2C2B27 45%,#171715)}
+.ph--dark::before{filter:invert(1)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.ph.has-img::before{display:none}
+.proj:hover .ph img{transform:scale(1.035)}
+
+/* Header */
+.header{position:fixed;inset:0 0 auto;z-index:50;color:var(--graphite);background:rgba(255,255,255,.96);transition:border-color .5s;border-bottom:1px solid transparent}
+.header.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(8px);color:var(--graphite);border-bottom:1px solid var(--line)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo b{font:500 24px var(--serif);letter-spacing:.32em}
+.logo small{font-size:8px;letter-spacing:.42em;margin-top:6px;opacity:.75}
+.nav{display:flex;align-items:center;gap:32px;font-size:13px}
+.nav .cta{border:1px solid currentColor;padding:9px 16px}
+
+/* Hero */
+.hero .wrap{max-width:1440px;display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,80px);align-items:center;padding-top:clamp(108px,12vw,140px);padding-bottom:clamp(56px,7vw,100px)}
+.hero h1{font-size:clamp(40px,5.2vw,78px);margin:20px 0 36px}
+.hero .ph{aspect-ratio:6/7;max-height:780px;width:100%}
+
+/* Projetos */
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(40px,6vw,80px)}
+#projetos .wrap{max-width:1440px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(48px,7vw,100px) clamp(16px,2.4vw,36px)}
+.proj:nth-child(4n+1){grid-column:1/span 8}.proj:nth-child(4n+1) .ph{aspect-ratio:4/3}
+.proj:nth-child(4n+2){grid-column:9/span 4;margin-top:clamp(40px,8vw,120px)}.proj:nth-child(4n+2) .ph{aspect-ratio:3/4}
+.proj:nth-child(4n+3){grid-column:1/span 5}.proj:nth-child(4n+3) .ph{aspect-ratio:3/4}
+.proj:nth-child(4n+4){grid-column:6/span 7;margin-top:clamp(40px,7vw,100px)}.proj:nth-child(4n+4) .ph{aspect-ratio:16/11}
+.proj .meta{margin-top:20px;display:grid;gap:6px}
+.proj h3{font-size:clamp(26px,2.4vw,32px)}
+.proj p{color:#5b5a55;font-size:15px;max-width:440px}
+
+/* Sobre */
+.about{background:var(--off)}
+.about .wrap{max-width:1440px;display:grid;grid-template-columns:6fr 5fr;gap:clamp(40px,8vw,120px);align-items:center}
+.about .ph{aspect-ratio:4/5}
+.about .ph img{object-position:50% 75%}
+.about p{margin-top:20px;max-width:520px;color:#4a4944}
+.badge{margin-top:32px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--serif);font-size:22px;font-style:italic;max-width:480px;line-height:1.35}
+.services{margin-top:28px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mineral)}
+
+/* CTA */
+.cta-sec{background:#fff;color:var(--graphite);text-align:center;border-top:1px solid var(--line)}
+.cta-sec h2{font-size:clamp(40px,6vw,80px);max-width:12em;margin:24px auto 40px}
+.cta-sec .eyebrow{color:var(--mineral)}
+.cta-sec .note{margin-top:20px;font-size:13px;color:var(--mineral)}
+.btn--dark{background:var(--graphite);color:#fff;border-color:var(--graphite)}
+.btn--dark:hover{background:transparent;color:var(--graphite)}
+
+/* Footer */
+.footer{background:#fff;color:var(--mineral);font-size:13px;border-top:1px solid var(--line)}
+.footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:32px;padding-bottom:32px}
+.footer a:hover{color:var(--graphite)}
+
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media (max-width:820px){
+  .nav a:not(.cta){display:none}
+  .head{flex-direction:column;align-items:flex-start}
+  .grid{grid-template-columns:1fr}
+  .proj[class]{grid-column:1/-1;margin-top:0}
+  .proj:nth-child(even) .ph{aspect-ratio:4/5}
+  .about .wrap{grid-template-columns:1fr}
+  .hero .wrap{grid-template-columns:1fr;padding-top:100px;gap:32px}
+  .hero .ph{aspect-ratio:4/5;max-height:520px}
+}
+</style>
+</head>
+<body>
+
+<header class="header" id="topo">
+  <div class="wrap">
+    <a href="#inicio" class="logo" aria-label="ORSE Arquitetura, início"><b>ORSE</b><small>ARQUITETURA</small></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#projetos">Projetos</a>
+      <a href="#sobre">Sobre</a>
+      <a class="cta" data-wa>Fale conosco</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow rv">ORSE Arquitetura · Rio de Janeiro</p>
+      <h1 class="rv">Arquitetura que respeita <em>quem vive o espaço.</em></h1>
+      <a class="btn btn--dark rv" data-wa>Conversar sobre meu projeto</a>
+    </div>
+    <div class="ph rv" data-img="hero" data-alt="Projeto da ORSE Arquitetura com vista para a Pedra da Gávea"></div>
+  </div>
+</section>
+
+<section class="sec" id="projetos">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow rv">Projetos</p><h2 class="rv" style="margin-top:20px">Projetos <em>selecionados.</em></h2></div>
+      <a class="link rv" data-href="instagram" target="_blank" rel="noopener">Ver mais no Instagram →</a>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="sec about" id="sobre">
+  <div class="wrap">
+    <div class="ph rv" data-img="arquiteto" data-alt="Arquiteto Octávio Rezende"></div>
+    <div>
+      <p class="eyebrow rv">Sobre</p>
+      <h2 class="rv" style="margin-top:20px">Octávio <em>Rezende.</em></h2>
+      <p class="rv">À frente da ORSE, Octávio acredita que o projeto começa por entender como as pessoas vivem. Do primeiro desenho à obra, cada decisão é pensada para unir estética, função e a rotina de quem vai ocupar o espaço.</p>
+      <p class="badge rv">Entre os 100 nomes mais influentes do design brasileiro no Anuário da Revista KAZA.</p>
+      <p class="services rv">Residencial · Interiores · Reformas · Comercial</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec cta-sec" id="contato">
+  <div class="wrap">
+    <p class="eyebrow rv">Contato</p>
+    <h2 class="rv">Seu próximo espaço começa com <em>uma boa conversa.</em></h2>
+    <a class="btn btn--dark rv" data-wa>Chamar no WhatsApp</a>
+    <p class="note rv">Rio de Janeiro e projetos em todo o Brasil</p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>© <span id="ano"></span> ORSE Arquitetura</span>
+    <a data-href="instagram" target="_blank" rel="noopener">@orse.arquitetura</a>
+  </div>
+</footer>
+
+
+<script>
+/* ===== CONFIGURAÇÃO: edite só este bloco ===== */
+const CONFIG = {
+  whatsapp: "5521999429916",   // só números, com DDI 55 e DDD
+  mensagem: "Olá, conheci a ORSE pelo site e gostaria de conversar sobre um projeto de arquitetura.",
+  instagram: "https://www.instagram.com/orse.arquitetura/"
+};
+
+/* Fotos: caminho do arquivo (ex.: "img/fc.jpg") ou URL. Vazio = placeholder. */
+/* Fotos de demonstração (distribuição provisória). Depois, colocar cada imagem no projeto certo. */
+const IMAGENS = {
+  hero:"img/hero.jpg", arquiteto:"img/octavio.jpg",
+  fc:"img/casa.jpg", barra:"img/interiores.jpg", ipanema:"img/reforma.jpg", lepain:"img/comercial.jpg"
+};
+
+/* Fonte: legendas públicas do @orse.arquitetura (out/2026). Validar com o Octávio. */
+const PROJETOS = [
+  { img:"fc", nome:"Projeto FC", tipo:"Residencial", local:"Joá",
+    texto:"Casa de 1.200 m² voltada para a paisagem, com piscina de borda infinita no ponto mais alto. Publicada no Book KAZA 2026.",
+    link:"https://www.instagram.com/orse.arquitetura/p/Da8EBIjHcQn/" },
+  { img:"barra", nome:"Apartamento do arquiteto", tipo:"Interiores", local:"Barra da Tijuca",
+    texto:"A marcenaria organiza todo o apartamento, com atemporalidade como premissa.",
+    link:"https://www.instagram.com/orse.arquitetura/p/DbxFdhbuC9-/" },
+  { img:"ipanema", nome:"Garden Ipanema", tipo:"Reforma", local:"Ipanema",
+    texto:"Um apartamento garden com muito potencial, reformado para revelar o que sempre poderia ter sido.",
+    link:"https://www.instagram.com/orse.arquitetura/p/DZa2_5bjcca/" },
+  { img:"lepain", nome:"Le Pain Carioca", tipo:"Comercial", local:"Recreio",
+    texto:"Boulangerie com bancada alta pensada para tomar um café e trabalhar no mesmo lugar.",
+    link:"https://www.instagram.com/orse.arquitetura/p/DBcjMM6R1K3/" }
+];
+/* ============================================ */
+
+const waUrl = CONFIG.whatsapp ? `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(CONFIG.mensagem)}` : CONFIG.instagram;
+
+document.getElementById("grid").innerHTML = PROJETOS.map(p=>`
+  <a class="proj rv" href="${p.link}" target="_blank" rel="noopener">
+    <div class="ph" data-img="${p.img}" data-alt="${p.nome}, projeto da ORSE Arquitetura"></div>
+    <div class="meta">
+      <p class="eyebrow">${p.tipo} · ${p.local}</p>
+      <h3>${p.nome}</h3>
+      <p>${p.texto}</p>
+    </div>
+  </a>`).join("");
+
+document.querySelectorAll("[data-wa]").forEach(a=>{ a.href = waUrl; a.target="_blank"; a.rel="noopener"; });
+document.querySelectorAll('[data-href="instagram"]').forEach(a=>a.href = CONFIG.instagram);
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+document.querySelectorAll(".ph[data-img]").forEach(ph=>{
+  const src = IMAGENS[ph.dataset.img]; if(!src) return;
+  const img = new Image(); img.alt = ph.dataset.alt; img.loading = ph.dataset.img==="hero" ? "eager" : "lazy";
+  img.onload = ()=>ph.classList.add("has-img"); img.src = src; ph.prepend(img);
+});
+
+const header = document.getElementById("topo");
+const onScroll = ()=>{ const y = scrollY; header.classList.toggle("scrolled", y>40); };
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
