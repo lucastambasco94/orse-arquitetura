@@ -74,21 +74,6 @@ em{font-style:italic}
 .side.next{right:0;justify-content:flex-end;cursor:e-resize}
 .side[disabled]{opacity:0;pointer-events:none}
 
-/* Todos os projetos */
-.all{padding:clamp(80px,10vw,130px) 0}
-.all .wrap{max-width:1100px}
-.list{margin-top:clamp(32px,4vw,48px);list-style:none;border-top:1px solid var(--line)}
-.list a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);transition:padding .4s var(--ease)}
-.list a:hover{padding-left:12px}
-.list h3{font-size:clamp(24px,2.6vw,32px)}
-.list span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mineral);white-space:nowrap}
-
-/* Lightbox (projetos fora do destaque) */
-.lb{position:fixed;inset:0;z-index:80;display:none}
-.lb.open{display:block}
-.lb .proj{height:100%;min-height:0;margin:0}
-.lb .close{position:absolute;top:20px;right:var(--pad);z-index:2;color:#fff;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
-
 /* Sobre */
 .about{background:var(--off);padding:clamp(80px,10vw,140px) 0}
 .about .wrap{max-width:1280px;display:grid;grid-template-columns:5fr 6fr;gap:clamp(40px,7vw,110px);align-items:center}
@@ -148,13 +133,6 @@ em{font-style:italic}
 
 <div id="projetos"></div>
 
-<section class="all" id="todos" data-tone="light">
-  <div class="wrap">
-    <p class="eyebrow rv">Todos os projetos</p>
-    <ul class="list" id="list"></ul>
-  </div>
-</section>
-
 <section class="about" id="sobre" data-tone="light">
   <div class="wrap">
     <div class="ph rv" data-img="arquiteto" data-alt="Arquiteto Octávio Rezende"><span class="tag">Foto do Octávio</span></div>
@@ -163,7 +141,7 @@ em{font-style:italic}
       <h2 class="rv" style="margin-top:20px">Octávio <em>Rezende.</em></h2>
       <p class="rv">À frente da ORSE, Octávio acredita que o projeto começa por entender como as pessoas vivem. Do primeiro desenho à obra, cada decisão é pensada para unir estética, função e a rotina de quem vai ocupar o espaço.</p>
       <p class="badge rv">Entre os 100 nomes mais influentes do design brasileiro no Anuário da Revista KAZA.</p>
-      <p class="services rv">Projetos · Arquitetura · Interiores · <span style="white-space:nowrap">Gestão de obras</span></p>
+      <p class="services rv">Arquitetura · Interiores · <span style="white-space:nowrap">Gestão de obras</span></p>
     </div>
   </div>
   <div class="wrap">
@@ -192,8 +170,6 @@ em{font-style:italic}
   </div>
 </footer>
 
-<div class="lb" id="lb" role="dialog" aria-modal="true"><button class="close" id="lbClose">Fechar ✕</button><div id="lbBody"></div></div>
-
 <a class="wa-float" data-wa aria-label="Conversar pelo WhatsApp" data-icon="wa"></a>
 
 <script>
@@ -215,14 +191,13 @@ const IMAGENS = {
 };
 
 /* Projetos: até 3 fotos cada (caminho ou vazio = placeholder).
-   destaque:true aparece em tela cheia na página; os demais ficam só em "Todos os projetos".
-   Sugestão: 6 a 8 em destaque. A ordem aqui é a ordem no site. */
+   Sugestão: 6 a 8 projetos. A ordem aqui é a ordem no site. */
 const PROJETOS = [
-  { nome:"Casa", local:"Joatinga", destaque:true, fotos:["img/casa.jpg","",""] },
-  { nome:"Casa", local:"Búzios", destaque:true, fotos:["","",""] },               /* [A FORNECER] fotos */
-  { nome:"Apartamento", local:"Ipanema", destaque:true, fotos:["img/reforma.jpg","",""] },
-  { nome:"Apartamento", local:"Barra da Tijuca", destaque:true, fotos:["img/interiores.jpg","",""] },
-  { nome:"Boulangerie", local:"Recreio", destaque:true, fotos:["img/comercial.jpg","",""] }
+  { nome:"Casa", local:"Joatinga", fotos:["img/casa.jpg","",""] },
+  { nome:"Casa", local:"Búzios", fotos:["","",""] },               /* [A FORNECER] fotos */
+  { nome:"Apartamento", local:"Ipanema", fotos:["img/reforma.jpg","",""] },
+  { nome:"Apartamento", local:"Barra da Tijuca", fotos:["img/interiores.jpg","",""] },
+  { nome:"Boulangerie", local:"Recreio", fotos:["img/comercial.jpg","",""] }
 ];
 /* ============================================ */
 
@@ -262,24 +237,12 @@ function ligarSlider(sec){
   track.addEventListener("scroll",()=>{ const i=atual(); count.textContent=`${i+1} / ${n}`; prev.disabled=i===0; next.disabled=i===n-1; },{passive:true});
 }
 
-/* Monta projetos em destaque e a lista completa */
-document.getElementById("projetos").outerHTML = PROJETOS.filter(p=>p.destaque).map(p=>projetoHTML(p,"p-"+slug(p))).join("");
+/* Monta os projetos */
+document.getElementById("projetos").outerHTML = PROJETOS.map(p=>projetoHTML(p,"p-"+slug(p))).join("");
 document.querySelectorAll(".proj").forEach(ligarSlider);
-document.getElementById("list").innerHTML = PROJETOS.map((p,i)=>`
-  <li class="rv"><a href="${p.destaque?"#p-"+slug(p):"#"}" data-i="${i}"><h3>${titulo(p)}</h3><span>→</span></a></li>`).join("");
 const firstProj = document.querySelector(".proj");
-document.querySelectorAll('a[href="#projetos"]').forEach(a=>a.href = firstProj ? "#"+firstProj.id : "#todos");
+document.querySelectorAll('a[href="#projetos"]').forEach(a=>a.href = firstProj ? "#"+firstProj.id : "#sobre");
 
-/* Projetos fora do destaque abrem em tela cheia por cima */
-const lb = document.getElementById("lb"), lbBody = document.getElementById("lbBody");
-document.getElementById("list").addEventListener("click", e=>{
-  const a = e.target.closest("a"); if(!a) return; const p = PROJETOS[a.dataset.i];
-  if(p.destaque) return; e.preventDefault();
-  lbBody.innerHTML = projetoHTML(p); ligarSlider(lbBody.firstElementChild); lb.classList.add("open"); document.body.style.overflow="hidden";
-});
-const fechar = ()=>{ lb.classList.remove("open"); document.body.style.overflow=""; };
-document.getElementById("lbClose").onclick = fechar;
-addEventListener("keydown", e=>{ if(e.key==="Escape"){ fechar(); } });
 
 /* Ícones, links e imagens fixas */
 document.querySelectorAll("[data-icon]").forEach(el=>el.insertAdjacentHTML("afterbegin", ICON[el.dataset.icon]));
