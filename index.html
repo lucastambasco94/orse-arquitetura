@@ -23,7 +23,7 @@
   --serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",system-ui,sans-serif;
   --pad:clamp(20px,4vw,56px);--ease:cubic-bezier(.2,.7,.2,1);--vh:100svh}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:76px}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory;scroll-padding-top:76px}
 body{background:#fff;color:var(--graphite);font:300 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a,button{color:inherit;text-decoration:none;font:inherit;background:none;border:0;cursor:pointer}
 img,video{display:block;max-width:100%}
@@ -64,7 +64,8 @@ em{font-style:italic}
 .proj-title{text-align:center;padding:clamp(40px,5vw,64px) var(--pad) clamp(20px,2.4vw,32px)}
 .proj{background:#fff}
 .frame{position:relative;height:74svh;min-height:400px;background:#fff;color:#fff}
-.proj.snap{scroll-snap-align:center}
+.proj.snap{scroll-snap-align:start;scroll-snap-stop:always}
+.footer{scroll-snap-align:end}
 .slides{display:flex;height:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .slides::-webkit-scrollbar{display:none}
 .slides .ph{flex:0 0 100%;height:100%;scroll-snap-align:start}
@@ -85,7 +86,6 @@ em{font-style:italic}
 .about p{margin-top:20px;max-width:520px;color:#4a4944}
 .badge{margin-top:32px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--serif);font-size:22px;font-style:italic;max-width:480px;line-height:1.35}
 .services{margin-top:28px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mineral)}
-.office{margin-top:clamp(56px,8vw,110px);aspect-ratio:21/9}
 
 /* Contato */
 .cta-sec{text-align:center;padding:clamp(80px,11vw,150px) 0}
@@ -112,8 +112,7 @@ em{font-style:italic}
   .icons{gap:16px}
   .svc-line{font-size:10px;letter-spacing:.14em}
   .about .wrap{grid-template-columns:1fr}
-  .office{aspect-ratio:4/3}
-  .side{width:30%;bottom:120px}
+    .side{width:30%;bottom:120px}
   .side svg{width:22px;height:22px}
   .footer .wrap{padding-right:100px}
 }
@@ -131,7 +130,7 @@ em{font-style:italic}
   </div>
 </header>
 
-<section class="intro" id="inicio">
+<section class="intro snap" id="inicio">
   <div class="ph" data-img="hero" data-alt="Projeto da ORSE Arquitetura"></div>
 </section>
 
@@ -140,7 +139,7 @@ em{font-style:italic}
 <h2 class="proj-title rv" id="projetos-titulo">Projetos</h2>
 <div id="projetos"></div>
 
-<section class="about" id="sobre" data-tone="light">
+<section class="about snap" id="sobre" data-tone="light">
   <div class="wrap">
     <div class="ph rv" data-img="arquiteto" data-alt="Arquiteto Octávio Rezende"><span class="tag">Foto do Octávio</span></div>
     <div>
@@ -150,12 +149,9 @@ em{font-style:italic}
       <p class="badge rv">Entre os 100 nomes mais influentes do design brasileiro no Anuário da Revista KAZA.</p>
     </div>
   </div>
-  <div class="wrap">
-    <div class="ph office rv" data-img="escritorio" data-alt="Escritório da ORSE Arquitetura" style="grid-column:1/-1"><span class="tag">Foto ou vídeo do escritório</span></div>
-  </div>
 </section>
 
-<section class="cta-sec" id="contato" data-tone="light">
+<section class="cta-sec snap" id="contato" data-tone="light">
   <div class="wrap">
     <p class="eyebrow rv">Contato</p>
     <h2 class="rv">Seu novo sonho começa com <em>uma conversa.</em></h2>
@@ -188,12 +184,10 @@ const CONFIG = {
   endereco: "Av. das Américas, 3333 · Barra da Tijuca"
 };
 
-/* Fotos: caminho do arquivo ou URL. Vazio = placeholder.
-   "escritorio" aceita foto (.jpg) ou vídeo (.mp4, toca mudo em loop). */
+/* Fotos: caminho do arquivo ou URL. Vazio = placeholder. */
 const IMAGENS = {
   hero: "img/hero.jpg",
-  arquiteto: "img/octavio.jpg",
-  escritorio: ""              /* [A FORNECER] foto ou vídeo do escritório */
+  arquiteto: "img/octavio.jpg"
 };
 
 /* Projetos: até 3 fotos cada (caminho ou vazio = placeholder).
