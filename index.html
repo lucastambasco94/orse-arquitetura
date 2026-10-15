@@ -23,7 +23,7 @@
   --serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",system-ui,sans-serif;
   --pad:clamp(20px,4vw,56px);--ease:cubic-bezier(.2,.7,.2,1);--vh:100svh}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:76px}
 body{background:#fff;color:var(--graphite);font:300 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a,button{color:inherit;text-decoration:none;font:inherit;background:none;border:0;cursor:pointer}
 img,video{display:block;max-width:100%}
@@ -45,32 +45,31 @@ em{font-style:italic}
 .ph.has-img .tag{display:none}
 
 /* Início: topo branco (ícones · logo) + foto de ponta a ponta */
-.intro{height:var(--vh);min-height:560px;display:flex;flex-direction:column;background:#fff}
-.top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:clamp(20px,2.6vw,32px) var(--pad)}
-.wa-top{justify-self:end}
-.wa-top svg{width:24px;height:24px}
+.intro{height:62svh;min-height:340px;display:flex;flex-direction:column;background:#fff}
+.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;height:76px;padding:0 var(--pad)}
 .wa-box{display:inline-block;border:1px solid var(--graphite);padding:11px 18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-align:center;line-height:1.4;transition:background .4s,color .4s}
 .wa-box:hover{background:var(--graphite);color:#fff}
 .cta-sec .wa-box{padding:16px 30px}
-.icons{display:flex;gap:16px;align-items:center}
+.icons{justify-self:end;display:flex;gap:18px;align-items:center}
 .icons a svg{width:22px;height:22px}
 .logo{display:flex;flex-direction:column;align-items:center;line-height:1;text-align:center}
-.logo b{font:500 clamp(40px,4.6vw,60px) var(--serif);letter-spacing:.32em;margin-right:-.32em}
-.logo small{font-size:clamp(9px,.9vw,11px);letter-spacing:.5em;margin:10px -.5em 0 0;color:var(--mineral)}
+.logo b{font:500 24px var(--serif);letter-spacing:.32em;margin-right:-.32em}
+.logo small{font-size:8px;letter-spacing:.42em;margin:6px -.42em 0 0;color:var(--mineral)}
 .intro .ph{flex:1;min-height:0}
 .ig{display:inline-flex;align-items:center;gap:8px}
 .ig svg{width:18px;height:18px}
 
 /* Projeto em tela cheia com 3 fotos */
-.proj{position:relative;height:84svh;min-height:440px;color:#fff;background:var(--black);margin-top:8px}
+.proj-title{text-align:center;padding:clamp(48px,6vw,80px) var(--pad) clamp(20px,2.4vw,32px)}
+.proj{background:#fff}
+.frame{position:relative;height:74svh;min-height:400px;background:var(--black);color:#fff}
 .proj.snap{scroll-snap-align:center}
 .slides{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .slides::-webkit-scrollbar{display:none}
 .slides .ph{flex:0 0 100%;height:100%;scroll-snap-align:start}
-.proj .shade{position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(transparent,rgba(0,0,0,.42));pointer-events:none}
-.cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,4vw,44px);text-align:center;pointer-events:none}
-.cap h3{font-size:clamp(28px,3.4vw,46px)}
-.side{position:absolute;top:0;bottom:110px;width:22%;display:flex;align-items:center;padding:0 var(--pad);opacity:.85;transition:opacity .3s}
+.cap{text-align:center;padding:clamp(16px,2vw,22px) var(--pad) clamp(28px,3.4vw,44px)}
+.cap h3{font-size:clamp(24px,2.6vw,34px)}
+.side{position:absolute;top:0;bottom:0;width:22%;display:flex;align-items:center;padding:0 var(--pad);opacity:.85;transition:opacity .3s}
 .side:hover{opacity:1}
 .side svg{width:28px;height:28px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.35))}
 .side.prev{left:0;cursor:w-resize}
@@ -109,7 +108,7 @@ em{font-style:italic}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
 @media (max-width:820px){
-  .icons{gap:12px}
+  .icons{gap:16px}
   .about .wrap{grid-template-columns:1fr}
   .office{aspect-ratio:4/3}
   .side{width:30%;bottom:120px}
@@ -121,17 +120,20 @@ em{font-style:italic}
 <body>
 
 <main>
-<section class="intro snap" id="inicio">
-  <header class="top">
-    <div class="icons">
-      <a data-href="instagram" target="_blank" rel="noopener" aria-label="Instagram da ORSE" data-icon="ig"></a>
-    </div>
-    <a href="#inicio" class="logo" aria-label="ORSE Arquitetura"><b>ORSE</b><small>ARQUITETURA</small></a>
-    <a class="wa-top" data-wa aria-label="Fale no WhatsApp" data-icon="wa"></a>
-  </header>
+<header class="top">
+  <span></span>
+  <a href="#inicio" class="logo" aria-label="ORSE Arquitetura"><b>ORSE</b><small>ARQUITETURA</small></a>
+  <div class="icons">
+    <a data-href="instagram" target="_blank" rel="noopener" aria-label="Instagram da ORSE" data-icon="ig"></a>
+    <a data-wa aria-label="Fale conosco pelo WhatsApp" data-icon="wa"></a>
+  </div>
+</header>
+
+<section class="intro" id="inicio">
   <div class="ph" data-img="hero" data-alt="Projeto da ORSE Arquitetura"></div>
 </section>
 
+<h2 class="proj-title rv" id="projetos-titulo">Projetos</h2>
 <div id="projetos"></div>
 
 <section class="about" id="sobre" data-tone="light">
@@ -154,7 +156,7 @@ em{font-style:italic}
   <div class="wrap">
     <p class="eyebrow rv">Contato</p>
     <h2 class="rv">Seu novo sonho começa com <em>uma conversa.</em></h2>
-    <a class="wa-box rv" data-wa>Fale no WhatsApp</a>
+    <a class="wa-box rv" data-wa>Fale conosco</a>
     <div class="contact rv">
       <a class="ig" data-href="instagram" target="_blank" rel="noopener"><span data-icon="ig"></span>@orse.arquitetura</a>
       <a id="email"></a>
@@ -171,7 +173,7 @@ em{font-style:italic}
   </div>
 </footer>
 
-<a class="wa-float" data-wa aria-label="Conversar pelo WhatsApp" data-icon="wa"></a>
+<a class="wa-float" data-wa aria-label="Fale conosco pelo WhatsApp" data-icon="wa"></a>
 
 <script>
 /* ===== CONFIGURAÇÃO: edite só este bloco ===== */
@@ -221,10 +223,11 @@ function media(src, alt, tag){
 function projetoHTML(p, id){
   const fotos = p.fotos.slice(0,3);
   return `<section class="proj snap" ${id?`id="${id}"`:""} data-tone="photo">
-    <div class="slides">${fotos.map((f,i)=>media(f, `${titulo(p)}, foto ${i+1}`, `Foto ${i+1} a enviar`)).join("")}</div>
-    <div class="shade"></div>
+    <div class="frame">
+      <div class="slides">${fotos.map((f,i)=>media(f, `${titulo(p)}, foto ${i+1}`, `Foto ${i+1} a enviar`)).join("")}</div>
+      ${fotos.length>1?`<button class="side prev" aria-label="Foto anterior" disabled>${ICON.prev}</button><button class="side next" aria-label="Próxima foto">${ICON.next}</button>`:""}
+    </div>
     <div class="cap"><h3>${titulo(p)}</h3></div>
-    ${fotos.length>1?`<button class="side prev" aria-label="Foto anterior" disabled>${ICON.prev}</button><button class="side next" aria-label="Próxima foto">${ICON.next}</button>`:""}
   </section>`;
 }
 
