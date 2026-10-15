@@ -96,11 +96,12 @@ em{font-style:italic}
 .services{margin-top:28px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mineral)}
 
 /* Contato */
-.cta-sec{text-align:center;min-height:calc(100svh - var(--top));display:flex;align-items:center;padding:clamp(24px,3vw,48px) 0}
-.cta-sec > .wrap{width:100%}
-.cta-sec .video{width:100%;max-width:960px;height:46svh;margin:16px auto 28px}
-.cta-sec .btn{padding:16px 36px;letter-spacing:.16em;text-transform:uppercase;font-size:12px}
-.contact{margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:#4a4944}
+.cta-sec{text-align:center;height:calc(100svh - var(--top));min-height:520px;display:flex;flex-direction:column;padding:0 0 clamp(18px,2.4vw,28px)}
+.video-box{position:relative;flex:1;min-height:0}
+.video-box .ph{position:absolute;inset:0}
+.video-box .btn{position:absolute;left:50%;bottom:clamp(24px,4vw,44px);transform:translateX(-50%);padding:16px 36px;letter-spacing:.16em;text-transform:uppercase;font-size:12px;white-space:nowrap}
+.video-box .btn:hover{background:#fff;color:var(--graphite);border-color:#fff}
+.contact{margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:#4a4944}
 .contact a:hover{color:var(--graphite)}
 .contact .ig svg{width:18px;height:18px}
 
@@ -130,6 +131,7 @@ em{font-style:italic}
   .side{width:30%}
   .side svg{width:22px;height:22px}
   .footer .wrap{padding-right:100px}
+  .contact{padding:0 64px}
 }
 </style>
 </head>
@@ -164,10 +166,11 @@ em{font-style:italic}
 </section>
 
 <section class="cta-sec snap" id="contato" data-tone="light">
+  <div class="video-box">
+    <div class="ph video" data-img="video" data-alt="Octávio e equipe da ORSE trabalhando"><span class="tag">Vídeo do Octávio e equipe</span></div>
+    <a class="btn" data-wa>Fale conosco</a>
+  </div>
   <div class="wrap">
-    <p class="eyebrow rv">Contato</p>
-    <div class="ph video rv" data-img="video" data-alt="Octávio e equipe da ORSE trabalhando"><span class="tag">Vídeo do Octávio e equipe</span></div>
-    <a class="btn rv" data-wa>Fale conosco</a>
     <div class="contact rv">
       <a class="ig" data-href="instagram" target="_blank" rel="noopener"><span data-icon="ig"></span>@orse.arquitetura</a>
       <a id="email"></a>
@@ -193,7 +196,7 @@ const CONFIG = {
   mensagem: "Olá, conheci a ORSE pelo site e gostaria de conversar sobre um projeto.",
   instagram: "https://www.instagram.com/orse.arquitetura/",
   email: "orsearquitetura@gmail.com",   /* vazio = some do site */
-  endereco: "Av. das Américas, 3333 · Barra da Tijuca"
+  endereco: "Av. das Américas, 3333 · Barra da Tijuca, Rio de Janeiro"
 };
 
 /* Fotos: caminho do arquivo ou URL. Vazio = placeholder. */
@@ -287,7 +290,7 @@ document.querySelectorAll(".ph[data-img]").forEach(ph=>{
 /* Contato */
 const em = document.getElementById("email"), endr = document.getElementById("endereco");
 if(CONFIG.email){ em.textContent = CONFIG.email; em.href = "mailto:"+CONFIG.email; } else em.remove();
-if(CONFIG.endereco){ endr.textContent = CONFIG.endereco; endr.href = "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(CONFIG.endereco+", Rio de Janeiro"); } else endr.remove();
+if(CONFIG.endereco){ endr.innerHTML = CONFIG.endereco.split(" · ").map(t=>`<span style="white-space:nowrap">${t}</span>`).join(" · "); endr.href = "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(CONFIG.endereco); } else endr.remove();
 
 const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});
 document.querySelectorAll(".rv").forEach(el=>io.observe(el));
