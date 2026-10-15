@@ -68,9 +68,8 @@ em{font-style:italic}
 .slides::-webkit-scrollbar{display:none}
 .slides .ph{flex:0 0 100%;height:100%;scroll-snap-align:start}
 .proj .shade{position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(transparent,rgba(0,0,0,.42));pointer-events:none}
-.cap{position:absolute;left:var(--pad);bottom:clamp(24px,4vw,44px);display:flex;align-items:baseline;gap:18px;pointer-events:none}
+.cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(24px,4vw,44px);text-align:center;pointer-events:none}
 .cap h3{font-size:clamp(28px,3.4vw,46px)}
-.cap .count{font-size:11px;letter-spacing:.2em;opacity:.85}
 .side{position:absolute;top:0;bottom:110px;width:22%;display:flex;align-items:center;padding:0 var(--pad);opacity:.85;transition:opacity .3s}
 .side:hover{opacity:1}
 .side svg{width:28px;height:28px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.35))}
@@ -224,19 +223,19 @@ function projetoHTML(p, id){
   return `<section class="proj snap" ${id?`id="${id}"`:""} data-tone="photo">
     <div class="slides">${fotos.map((f,i)=>media(f, `${titulo(p)}, foto ${i+1}`, `Foto ${i+1} a enviar`)).join("")}</div>
     <div class="shade"></div>
-    <div class="cap"><h3>${titulo(p)}</h3>${fotos.length>1?`<span class="count">1 / ${fotos.length}</span>`:""}</div>
+    <div class="cap"><h3>${titulo(p)}</h3></div>
     ${fotos.length>1?`<button class="side prev" aria-label="Foto anterior" disabled>${ICON.prev}</button><button class="side next" aria-label="Próxima foto">${ICON.next}</button>`:""}
   </section>`;
 }
 
 function ligarSlider(sec){
   const track = sec.querySelector(".slides"), n = track.children.length;
-  const prev = sec.querySelector(".prev"), next = sec.querySelector(".next"), count = sec.querySelector(".count");
+  const prev = sec.querySelector(".prev"), next = sec.querySelector(".next");
   if(n<2) return;
   const atual = ()=>Math.round(track.scrollLeft/track.clientWidth);
   const ir = i=>track.scrollTo({left:i*track.clientWidth,behavior:"smooth"});
   prev.onclick = ()=>ir(atual()-1); next.onclick = ()=>ir(atual()+1);
-  track.addEventListener("scroll",()=>{ const i=atual(); count.textContent=`${i+1} / ${n}`; prev.disabled=i===0; next.disabled=i===n-1; },{passive:true});
+  track.addEventListener("scroll",()=>{ const i=atual(); prev.disabled=i===0; next.disabled=i===n-1; },{passive:true});
 }
 
 /* Monta os projetos */
