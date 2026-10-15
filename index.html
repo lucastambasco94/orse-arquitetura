@@ -96,11 +96,13 @@ em{font-style:italic}
 .services{margin-top:28px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mineral)}
 
 /* Contato */
-.cta-sec{text-align:center;padding:clamp(80px,11vw,150px) 0}
-.cta-sec h2{font-size:clamp(38px,5.6vw,72px);max-width:12em;margin:24px auto 40px}
-.contact{margin-top:clamp(36px,4vw,48px);display:flex;flex-direction:column;align-items:center;gap:14px;font-size:14px;color:#4a4944}
+.cta-sec{text-align:center;min-height:calc(100svh - var(--top));display:flex;align-items:center;padding:clamp(24px,3vw,48px) 0}
+.cta-sec > .wrap{width:100%}
+.cta-sec .video{width:100%;max-width:960px;height:46svh;margin:16px auto 28px}
+.cta-sec .btn{padding:16px 36px;letter-spacing:.16em;text-transform:uppercase;font-size:12px}
+.contact{margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:#4a4944}
 .contact a:hover{color:var(--graphite)}
-.contact .ig svg{width:22px;height:22px}
+.contact .ig svg{width:18px;height:18px}
 
 /* Rodapé */
 .footer{color:var(--mineral);font-size:13px;border-top:1px solid var(--line)}
@@ -164,8 +166,8 @@ em{font-style:italic}
 <section class="cta-sec snap" id="contato" data-tone="light">
   <div class="wrap">
     <p class="eyebrow rv">Contato</p>
-    <h2 class="rv">Seu novo sonho começa com <em>uma conversa.</em></h2>
-    <a class="wa-box rv" data-wa>Fale conosco</a>
+    <div class="ph video rv" data-img="video" data-alt="Octávio e equipe da ORSE trabalhando"><span class="tag">Vídeo do Octávio e equipe</span></div>
+    <a class="btn rv" data-wa>Fale conosco</a>
     <div class="contact rv">
       <a class="ig" data-href="instagram" target="_blank" rel="noopener"><span data-icon="ig"></span>@orse.arquitetura</a>
       <a id="email"></a>
@@ -197,7 +199,8 @@ const CONFIG = {
 /* Fotos: caminho do arquivo ou URL. Vazio = placeholder. */
 const IMAGENS = {
   hero: "img/hero.jpg",
-  arquiteto: "img/octavio.jpg"
+  arquiteto: "img/octavio.jpg",
+  video: ""   /* [A FORNECER] vídeo do Octávio e equipe (.mp4, toca mudo em loop), ex.: "img/equipe.mp4" */
 };
 
 /* Projetos: até 3 fotos cada (caminho ou vazio = placeholder). A ordem aqui é a ordem no site.
