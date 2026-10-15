@@ -259,7 +259,7 @@ document.getElementById("projetos").outerHTML = PROJETOS.map(p=>projetoHTML(p,"p
   + (PROJETOS.length>VISIVEIS ? `<div class="more"><button class="wa-box" id="verMais">Ver mais projetos</button></div>` : "");
 const projs = [...document.querySelectorAll(".proj")];
 projs.forEach(ligarSlider);
-projs[0]?.classList.add("first");
+projs[0]?.classList.add("first"); projs[0]?.classList.remove("snap");
 projs.slice(VISIVEIS).forEach(p=>p.classList.add("extra"));
 const more = document.querySelector(".more");
 if(more){ projs[VISIVEIS-1].after(more);
